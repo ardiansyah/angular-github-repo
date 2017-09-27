@@ -1,0 +1,22 @@
+<nav aria-label="Page navigation">
+  <div class="description">
+		<span class="page-counts">{{ getMin() }} - {{ getMax() }} of {{ count }}</span>
+		<span class="page-totals">{{ totalPages() }} pages</span>
+	</div>
+  <ul class="pagination">
+    <li>
+      <a (click)="onPrev()" [ngClass]="{ 'disabled': page === 1 || loading }">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li *ngFor="let pageNum of getPages()" 
+      [ngClass]="{'active': pageNum === page, 'disabled': loading}">
+      <a href="javascript:;" (click)="onPage(pageNum)">{{ pageNum }}</a>
+    </li>
+    <li>
+      <a class="link" (click)="onNext(true)" [ngClass]="{ 'disabled': lastPage() || loading }">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

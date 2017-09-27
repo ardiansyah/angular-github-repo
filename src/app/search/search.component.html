@@ -1,0 +1,39 @@
+<div id="maia-main" role="main" style="top:0px;margin:0px;padding:5px;">
+<div class="maia-teleport" id="content" style="top:0px;margin:0px;padding:5px;" ></div>
+
+<br class="clearfix">
+<div class="centered max-width try-search scroll-section" data-section-label="Try search" style="top:0px;margin:0px;padding:5px;">
+  
+  <input #search 
+    (keyup.enter)="onSearch(search.value); search.value=''" 
+    class="search-input" placeholder="Enter keyword" type="text">
+  
+  
+  <div id="search_results">
+    <app-pagination
+      (goPage)="goToPage($event)"
+      (goNext)="onNext()"
+      (goPrev)="onPrev()"
+      [pagesToShow]="10"
+      [page]="page"
+      [perPage]="limit"
+      [count]="total">
+    </app-pagination>
+
+    <div class="result" *ngFor="let result of results">
+      <a href="{{ result.html_url }}" target="_blank">{{ result.full_name }}</a>
+      <a href="{{ result.html_url }}" target="_blank" class="result_url">{{result.html_url}}</a>
+      <p class="snippet">
+        {{ result.description }}
+      </p>
+    </div>
+    <app-pagination
+      (goPage)="goToPage($event)"
+      (goNext)="onNext()"
+      (goPrev)="onPrev()"
+      [pagesToShow]="10"
+      [page]="page"
+      [perPage]="limit"
+      [count]="total">
+    </app-pagination>
+  </div>
